@@ -1,0 +1,21 @@
+<div class="chat-container">
+  <div class="messages"></div>
+  @for (msg of messages(); track $index) {
+  <div [ngClass]="msg.isUser ? 'user-message' : 'bot-message'">
+    {{ msg.text }}
+  </div>
+  } @if (isLoading()) {
+  <div class="loader"></div>
+  }
+</div>
+
+<form (submit)="onSubmit()" class="input-form">
+  <input
+    type="text"
+    [(ngModel)]="userInput"
+    (keyup.enter)="onSubmit()"
+    placeholder="Type your message here..."
+    name="chatInput"
+    required
+  />
+</form>
